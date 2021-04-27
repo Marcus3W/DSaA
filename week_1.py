@@ -275,3 +275,33 @@ def hasCommonElement(Salaries, Genders):
 print (hasCommonElement([30000, 30000, 15000, 10000], ['M', 'F', 'F', 'M']), "Has a common element"
 print (hasCommonElement([30000, 31000, 15000, 10000], ['M', 'F', 'F', 'M']), "Hasnt got a common element"
 
+-------------------------------------------------------------------------------
+       
+# Exercise 6
+
+# Write a function whose input are two lists A and B. 
+# The function returns true if each element of A occurs in B the same number of times as in A and false otherwise.
+	   
+def countOcc(e, A):
+  total = 0
+  for i in range(0, len(A)):
+    if A[i] == e:
+      total += 1
+  return total
+
+def checkIfElementIsInListTwoxTimes(A, B):
+    for i in range(0, len(A)):
+      counterElementInA = countOcc(A[i], A)
+      counterElementInB = countOcc(A[i], B)
+      if counterElementInA != counterElementInB:
+        return False
+    return True
+
+A = [1, 1, 3, 2, 5, 6]
+B = [3, 2, 1, 1, 5, 6]
+
+assert checkIfElementIsInListTwoxTimes(A, B), "Element count diverge"
+
+A = [1, 1, 3, 2, 5, 6]
+B = [3, 2, 1, 0, 5, 6]
+assert not checkIfElementIsInListTwoxTimes(A, B), "Elements count is the same"
