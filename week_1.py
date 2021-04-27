@@ -26,7 +26,7 @@ def salaries(A) :
 			
 A = [300002, 30001]
 
-assert salaries(A), "Average is not over 30k"
+print (salaries(A))
 
 -------------------------------------------------------------------------------
 
@@ -84,6 +84,72 @@ print (isEqual(A, B), "Lists are equal")
 A = [1, 2]
 B = [1, 3]
 print (isEqual(A, B), "Lists are not equal")
+
+-------------------------------------------------------------------------------
+
+# Exercise 3.1
+
+# Write a function computing the smallest odd element of A.
+
+def isOdd(number) :
+	
+	return (number % 2 == 1)
+
+def smallestOddElement(A) :
+	
+	smallest = A[0]
+	
+	for i in range(0, len(A)) :
+		
+		if A[i] < smallest and A[i] % 2 == 1 :
+			
+			smallest = A[i]
+			
+	if not isOdd (smallest) :	
+		return - 1
+	
+	return smallest
+	
+A = [1, 3, 5, 7, 9, 11]
+print (smallestOddElement(A))
+
+A = [2, 4, 6, 8, 10, 12]
+print (smallestOddElement(A))
+
+-------------------------------------------------------------------------------
+	
+# Exercise 3.2
+
+# Write a function computing the second largest element of A.
+
+def secondLargest(A):
+	
+    largest = 0
+    secondLargest = 0
+	
+    for i in range(0, len(A)):
+		
+        if A[i] > largest:
+			
+            secondLargest = largest
+            largest = A[i]
+			
+        elif A[i] > secondLargest:
+			
+            secondLargest = A[i]
+			
+    return secondLargest
+
+A = [1, 2, 3, 5, 10]
+print (secondLargest(A))
+
+-------------------------------------------------------------------------------
+
+# Exercise 3.3
+
+# Write a function computing an index of the largest element of A. If the
+# largest element has several occurrences return the index of an arbitrary
+# occurrence.
 
 
 
