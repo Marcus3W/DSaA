@@ -151,7 +151,19 @@ print (secondLargest(A))
 # largest element has several occurrences return the index of an arbitrary
 # occurrence.
 
+def largestIndex(A):
+	
+	largest_Index = 0
+	largest_Number = A[0]
+	
+	for i in range(1, len(A)) :  ## this is 1 because we have already stored '0' as the largest number
+		
+		if A[i] > largest_Number :
+			
+			largest_Number = A[i]
+			largest_Index = i
+	
+	return largest_Index
 
-
-
-
+A = [1, 2, 3, 10]
+print (largestIndex(A))
