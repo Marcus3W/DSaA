@@ -167,3 +167,111 @@ def largestIndex(A):
 
 A = [1, 2, 3, 10]
 print (largestIndex(A))
+
+-------------------------------------------------------------------------------
+
+# Exercise 4
+
+# The input of all the functions considered in this exercise are two lists SALARIES and GENDERS. 
+# The indices of these lists correspond to employees (you can think of the indices as IDs of employees). 
+# SALARIES[i] is the early salary of employee i. 
+# GENDERS[i] is the gender of employee i. 
+# In particular, GENDER[i] = 'F' if employee i is female and GENDER[i] = 'M' if employee i is male.
+
+# Exercise 4.1
+
+# Write a program that returns tuple (FSAL;MSAL) that are respectively salaries of female and male employees.
+
+def salaries(Salaries, Genders):
+	
+	FSAL = []
+	MSAL = []
+	
+	
+	for i in range(0, len(Salaries)) :
+		
+		if Genders[i] == 'F' :
+			
+			FSAL.append(Salaries[i])
+		
+		else :
+			MSAL.append(Salaries[i])
+	
+	return (FSAL, MSAL)
+
+# Exercise 4.2
+
+# Write a program that returns tuple (avf; avm) that are respective average salaries of female and male employees.
+
+def averageSalaries(Salaries, Genders):
+    MSAL_Total = 0
+    FSAL_Total = 0
+    number_Of_Male_Employees = 0
+    number_Of_Female_Employees = 0
+
+    for i in range(0, len(Salaries)):
+        if Genders[i] == 'F':
+            FSAL_Total += Salaries[i]
+            number_Of_Female_Employees += 1
+        else:
+            MSAL_Total += Salaries[i]
+            number_Of_Male_Employees += 1
+    
+    return [FSAL_Total / number_Of_Female_Employees, MSAL_Total / number_Of_Male_Employees]
+
+# Exercise 4.3
+
+# Write a program that returns tuple (maxf;maxm) that are respectively the largest salaries of female and make employees.
+
+def largestSalaries(Salaries, Genders):
+    largest_MSAL = 0
+    largest_FSAL = 0
+
+    for i in range(0, len(Salaries)):
+        if Genders[i] == 'F':
+            if Salaries[i] > largest_FSAL:
+                largest_FSAL = Salaries[i]
+        else:
+            if Salaries[i] > largest_MSAL:
+                largest_MSAL = Salaries[i]
+    
+    return [largest_FSAL, largest_MSAL]
+
+print(salaries([45000, 30000, 90000, 10000], ['M', 'F', 'F', 'M']), "Male and Female Salaries")
+print(averageSalaries([45000, 30000, 90000, 10000], ['M', 'F', 'F', 'M']), "Average Salaries per Gender")
+print(largestSalaries([45000, 30000, 90000, 10000], ['M', 'F', 'F', 'M']), "Largest Salaries per Gender")
+
+-------------------------------------------------------------------------------
+
+# Exercise 5
+
+# Write a function that returns true if there is a female and a male employees that receive the same salary and false otherwise.
+
+def isDifferentGenders(gender_1, gender_2):
+	
+  return (gender_1 == 'F' and gender_2 == 'M') or (gender_1 == 'M' and gender_2 == 'F')
+
+
+def isEqualSalary(salary_1, salary_2):
+	
+  return salary_1 == salary_2
+
+
+def hasCommonElement(Salaries, Genders):
+	
+    for i in range(0, len(Salaries)):
+		
+        for j in range(1, len(Salaries)):
+			
+            # Only check for salaries differences if genders are different
+            if isDifferentGenders(Genders[i], Genders[j]): # checks to see if the genders are different, if true continue into next nest, if false next index
+				
+                if isEqualSalary(Salaries[i], Salaries[j]):
+					
+                    return True
+				
+    return False
+
+print (hasCommonElement([30000, 30000, 15000, 10000], ['M', 'F', 'F', 'M']), "Has a common element"
+print (hasCommonElement([30000, 31000, 15000, 10000], ['M', 'F', 'F', 'M']), "Hasnt got a common element"
+
