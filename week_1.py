@@ -67,6 +67,23 @@ print(findIndex(A))
 
 # Assume both lists are sorted
 
+def isEqual(A, B):
+	
+	for i in range(0, len(A)) :
+		
+		if A[i] != B[i] :
+			
+			return False
+	
+	return True	
+
+A = [1, 2]
+B = [1, 2]
+print (isEqual(A, B), "Lists are equal")
+
+A = [1, 2]
+B = [1, 3]
+print (isEqual(A, B), "Lists are not equal")
 
 
 
