@@ -183,4 +183,105 @@ def MODAverages(marks):
 
 print(MODAverages(MARKS))
 
+
 # -------------------------------------------------------------------------------
+
+# 0-regular graph
+A = [
+  [0,0,0,0,0,0],
+  [0,0,0,0,0,0],
+  [0,0,0,0,0,0],
+  [0,0,0,0,0,0],
+  [0,0,0,0,0,0],
+  [0,0,0,0,0,0]
+]
+
+# 1-regular graph
+B = [
+  [0,1,0,0,0,0],
+  [1,0,0,0,0,0],
+  [0,0,0,1,0,0],
+  [0,0,1,0,0,0],
+  [0,0,0,0,0,1],
+  [0,0,0,0,1,0]
+]
+
+# 2-regular graph
+C = [
+  [0,1,1,0,0,0],
+  [1,0,1,0,0,0],
+  [1,1,0,0,0,0],
+  [0,0,0,0,1,1],
+  [0,0,0,1,0,1],
+  [0,0,0,1,1,0]
+]
+
+# 3-regular graph
+D = [
+  [0,1,0,1,0,1],
+  [1,0,1,0,0,1],
+  [0,1,0,1,1,0],
+  [1,0,1,0,1,0],
+  [0,0,1,1,0,1],
+  [1,1,0,0,1,0]
+]
+
+# Not regular graph
+E = [
+  [0,1,0,1,0,1],
+  [1,0,1,0,0,1],
+  [1,1,0,1,1,0],
+  [1,0,1,0,1,0],
+  [0,0,1,1,0,1],
+  [1,1,0,0,1,0]
+]
+
+# Lecture matrix
+I = [
+  [0,1,1,0,0],
+  [1,0,1,1,0],
+  [1,1,0,0,1],
+  [0,0,1,0,1],
+  [0,0,1,1,0]
+]
+
+# bipartite graph
+BG = [
+  [0,0,0,1,1,1],
+  [0,0,0,1,1,1],
+  [0,0,0,1,1,1],
+  [1,1,1,0,0,0],
+  [1,1,1,0,0,0],
+  [1,1,1,0,0,0]
+]
+
+# Exercise 3
+
+# A graph is regular if the degrees of all the vertices are the same.
+# Write a function whose input is an adjacency matrix A of a graph G.
+# The function returns true if G is a regular graph and false otherwise.
+
+def isRegularGraph(A) :
+
+    # get list of degrees
+
+    d0 = sum(A[0])
+
+    if d0 == 0 :
+        return False
+
+    # Do comparisons from i to i -1
+    for i in range(1, len(A)) :
+        d = sum(A[i])
+        if d0 != d :
+            return False
+    return True
+
+print(isRegularGraph(A)) # It is not a regular graph
+print(isRegularGraph(E)) # It is not a regular graph
+print(isRegularGraph(I)) # It is not a regular graph
+
+print(isRegularGraph(B)) # It is a regular graph
+print(isRegularGraph(C)) # It is a regular graph
+print(isRegularGraph(D)) # It is a regular graph
+print(isRegularGraph(BG)) # It is a regular graph
