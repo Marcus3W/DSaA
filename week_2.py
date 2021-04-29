@@ -332,3 +332,181 @@ print(isDominatingSet(matrix, subSet2))
 
 invalidSubSet0 = [2, 3]
 print(isDominatingSet(matrix, invalidSubSet0))
+
+# -------------------------------------------------------------------------------
+
+# Exercise 6
+
+# A subset S of vertices of a graph G is called a vertex cover of G if each edge of G has at least one end in S.
+# Write a function IsVertexCover whose input is the adjacency matrix A of a graph G and a subset of vertices of G
+# (in the form of a list). The function returns true if S is a vertex cover of G and false otherwise.
+
+def isCovered(edge, vx):
+  i, j = edge
+  if vx == i or vx == j:
+    return True
+  return False
+
+# Delete covered edges
+def deleteEdges(A, S,):
+  for i in range(len(A)):
+    for j in range(len(A[i])):
+      edge = [i, j]
+      for k in range(len(S)):
+        vx = S[k]
+        # if each edge of G has at least one end in S.
+        # Delete the edge
+        if isCovered(edge, vx):
+          A[i][j] = 0
+          A[j][i] = 0
+
+def isVertexCover(A, S):
+  deleteEdges(A, S)
+  # If an edge still exists
+  # It means that our subset of vertices doesn't cover the whole graph
+  for i in range(len(A)):
+    for j in range(len(A[i])):
+      if A[i][j]:
+        return False
+  return True
+
+#    -- 1 -- 3
+#  /   |   / |
+# 0    |  /  |
+#  \   | /   |
+#    -- 2 -- 4
+
+# Valid subsets:
+
+# [0, 1, 2, 4]
+# [1, 2, 3]
+# [1, 2, 4]
+
+# Invalid subsets
+
+# [0, 1]
+# [0, 1, 3]
+# [1, 2]
+
+# Undirected graph
+matrix = [
+  [0,1,1,0,0],
+  [1,0,1,1,0],
+  [1,1,0,1,1],
+  [0,1,1,0,1],
+  [0,0,1,1,0]
+]
+subSet0 = [0, 1, 2, 4]
+assert isVertexCover(matrix, subSet0), "It is not a Vertex Cover"
+
+# Undirected graph
+matrix = [
+  [0,1,1,0,0],
+  [1,0,1,1,0],
+  [1,1,0,1,1],
+  [0,1,1,0,1],
+  [0,0,1,1,0]
+]
+subSet1 = [1, 2, 4]
+assert isVertexCover(matrix, subSet1), "It is not a Vertex Cover"
+
+# Undirected graph
+matrix = [
+  [0,1,1,0,0],
+  [1,0,1,1,0],
+  [1,1,0,1,1],
+  [0,1,1,0,1],
+  [0,0,1,1,0]
+]
+subSet2 =  [1, 2, 3]
+assert isVertexCover(matrix, subSet2), "It is not a Vertex Cover"
+
+# Undirected graph
+matrix = [
+  [0,1,1,0,0],
+  [1,0,1,1,0],
+  [1,1,0,1,1],
+  [0,1,1,0,1],
+  [0,0,1,1,0]
+]
+invalidSubSet0 = [0, 1]
+assert not isVertexCover(matrix, invalidSubSet0), "It is a Vertex Cover"
+
+# Undirected graph
+matrix = [
+  [0,1,1,0,0],
+  [1,0,1,1,0],
+  [1,1,0,1,1],
+  [0,1,1,0,1],
+  [0,0,1,1,0]
+]
+invalidSubSet1 = [0, 1, 3]
+assert not isVertexCover(matrix, invalidSubSet1), "It is a Vertex Cover"
+
+# Undirected graph
+matrix = [
+  [0,1,1,0,0],
+  [1,0,1,1,0],
+  [1,1,0,1,1],
+  [0,1,1,0,1],
+  [0,0,1,1,0]
+]
+invalidSubSet2 = [1, 2]
+assert not isVertexCover(matrix, invalidSubSet2), "It is a Vertex Cover"
+
+#     1
+#     | \
+#     |  \
+# 0 --|-- 3
+#     |  /
+#     | /
+#     2
+
+# Valid subsets
+
+# [0, 1, 3]
+# [1, 3]
+
+# Invalid subsets
+# [0, 1]
+# [1, 2]
+
+matrix = [
+  [0, 0, 0, 1],
+  [0, 0, 1, 1],
+  [0, 1, 0, 1],
+  [1, 1, 1, 0],
+]
+
+subSet0 = [0, 1, 3]
+assert isVertexCover(matrix, subSet0), "It is not a Vertex Cover"
+
+matrix = [
+  [0, 0, 0, 1],
+  [0, 0, 1, 1],
+  [0, 1, 0, 1],
+  [1, 1, 1, 0],
+]
+
+subSet1 = [1, 3]
+assert isVertexCover(matrix, subSet1), "It is not a Vertex Cover"
+
+matrix = [
+  [0, 0, 0, 1],
+  [0, 0, 1, 1],
+  [0, 1, 0, 1],
+  [1, 1, 1, 0],
+]
+
+invalidsubSet0 = [0, 1]
+assert isVertexCover(matrix, subSet0), "It is a Vertex Cover"
+
+matrix = [
+  [0, 0, 0, 1],
+  [0, 0, 1, 1],
+  [0, 1, 0, 1],
+  [1, 1, 1, 0],
+]
+
+invalidsubSet1 = [1, 2]
+assert isVertexCover(matrix, subSet1), "It is a Vertex Cover"
