@@ -183,77 +183,29 @@ def MODAverages(marks):
 
 print(MODAverages(MARKS))
 
-
 # -------------------------------------------------------------------------------
 
 # 0-regular graph
-A = [
-  [0,0,0,0,0,0],
-  [0,0,0,0,0,0],
-  [0,0,0,0,0,0],
-  [0,0,0,0,0,0],
-  [0,0,0,0,0,0],
-  [0,0,0,0,0,0]
-]
-
+A = [[0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0],
+     [0, 0, 0, 0, 0, 0]]
 # 1-regular graph
-B = [
-  [0,1,0,0,0,0],
-  [1,0,0,0,0,0],
-  [0,0,0,1,0,0],
-  [0,0,1,0,0,0],
-  [0,0,0,0,0,1],
-  [0,0,0,0,1,0]
-]
-
+B = [[0, 1, 0, 0, 0, 0], [1, 0, 0, 0, 0, 0], [0, 0, 0, 1, 0, 0], [0, 0, 1, 0, 0, 0], [0, 0, 0, 0, 0, 1],
+     [0, 0, 0, 0, 1, 0]]
 # 2-regular graph
-C = [
-  [0,1,1,0,0,0],
-  [1,0,1,0,0,0],
-  [1,1,0,0,0,0],
-  [0,0,0,0,1,1],
-  [0,0,0,1,0,1],
-  [0,0,0,1,1,0]
-]
-
+C = [[0, 1, 1, 0, 0, 0], [1, 0, 1, 0, 0, 0], [1, 1, 0, 0, 0, 0], [0, 0, 0, 0, 1, 1], [0, 0, 0, 1, 0, 1],
+     [0, 0, 0, 1, 1, 0]]
 # 3-regular graph
-D = [
-  [0,1,0,1,0,1],
-  [1,0,1,0,0,1],
-  [0,1,0,1,1,0],
-  [1,0,1,0,1,0],
-  [0,0,1,1,0,1],
-  [1,1,0,0,1,0]
-]
-
+D = [[0, 1, 0, 1, 0, 1], [1, 0, 1, 0, 0, 1], [0, 1, 0, 1, 1, 0], [1, 0, 1, 0, 1, 0], [0, 0, 1, 1, 0, 1],
+     [1, 1, 0, 0, 1, 0]]
 # Not regular graph
-E = [
-  [0,1,0,1,0,1],
-  [1,0,1,0,0,1],
-  [1,1,0,1,1,0],
-  [1,0,1,0,1,0],
-  [0,0,1,1,0,1],
-  [1,1,0,0,1,0]
-]
-
+E = [[0, 1, 0, 1, 0, 1], [1, 0, 1, 0, 0, 1], [1, 1, 0, 1, 1, 0], [1, 0, 1, 0, 1, 0], [0, 0, 1, 1, 0, 1],
+     [1, 1, 0, 0, 1, 0]]
 # Lecture matrix
-I = [
-  [0,1,1,0,0],
-  [1,0,1,1,0],
-  [1,1,0,0,1],
-  [0,0,1,0,1],
-  [0,0,1,1,0]
-]
-
+I = [[0, 1, 1, 0, 0], [1, 0, 1, 1, 0], [1, 1, 0, 0, 1], [0, 0, 1, 0, 1], [0, 0, 1, 1, 0]]
 # bipartite graph
-BG = [
-  [0,0,0,1,1,1],
-  [0,0,0,1,1,1],
-  [0,0,0,1,1,1],
-  [1,1,1,0,0,0],
-  [1,1,1,0,0,0],
-  [1,1,1,0,0,0]
-]
+BG = [[0, 0, 0, 1, 1, 1], [0, 0, 0, 1, 1, 1], [0, 0, 0, 1, 1, 1], [1, 1, 1, 0, 0, 0], [1, 1, 1, 0, 0, 0],
+      [1, 1, 1, 0, 0, 0]]
+
 
 # Exercise 3
 
@@ -261,27 +213,122 @@ BG = [
 # Write a function whose input is an adjacency matrix A of a graph G.
 # The function returns true if G is a regular graph and false otherwise.
 
-def isRegularGraph(A) :
-
+def isRegularGraph(A):
     # get list of degrees
 
-    d0 = sum(A[0])
+    d0 = sum(A[0])  # gets the sum of the FIRST ROW
 
-    if d0 == 0 :
+    if d0 == 0:  # checks if FIRST ROW is zero
         return False
 
     # Do comparisons from i to i -1
-    for i in range(1, len(A)) :
-        d = sum(A[i])
-        if d0 != d :
+    for i in range(1, len(A)):  # checks from SECOND ROW until end
+        d = sum(A[i])  # gets the sum of each of the NEXT ROWS
+        if d0 != d:  # if FIRST ROW total doesn't match the other rows then return False
             return False
-    return True
+    return True  # if ALL ROWS match
 
-print(isRegularGraph(A)) # It is not a regular graph
-print(isRegularGraph(E)) # It is not a regular graph
-print(isRegularGraph(I)) # It is not a regular graph
 
-print(isRegularGraph(B)) # It is a regular graph
-print(isRegularGraph(C)) # It is a regular graph
-print(isRegularGraph(D)) # It is a regular graph
-print(isRegularGraph(BG)) # It is a regular graph
+print(isRegularGraph(A))  # It is not a regular graph
+print(isRegularGraph(E))  # It is not a regular graph
+print(isRegularGraph(I))  # It is not a regular graph
+
+print(isRegularGraph(B))  # It is a regular graph
+print(isRegularGraph(C))  # It is a regular graph
+print(isRegularGraph(D))  # It is a regular graph
+print(isRegularGraph(BG))  # It is a regular graph
+
+
+# -------------------------------------------------------------------------------
+
+# Exercise 4
+
+# Three different vertices i; j; k
+# are called a triangle if i is adjacent to j, j is adjacent to k, and i is adjacent to k.
+# In other words, a triangle is just a clique of size 3.
+
+# Write a function TrianglesCount. The input of this function is the adjacency matrix A of a graph G and the output
+# is the number of triangles of G.
+
+def TrianglesCount(adj_matrix):
+    total = 0
+
+    for i in range(len(adj_matrix)):
+
+        for j in range(len(adj_matrix[i])):
+
+            if adj_matrix[i][j]:
+
+                for k in range(len(adj_matrix[i])):
+
+                    if adj_matrix[i][j] and adj_matrix[j][k] and adj_matrix[i][k]:
+                        total += 1
+    return total // 6
+
+
+A = [[0, 1, 1], [1, 0, 1], [1, 1, 0]]
+print(TrianglesCount(A))
+
+B = [[0, 1, 1, 0, 0, 0], [1, 0, 1, 0, 0, 0], [1, 1, 0, 0, 0, 0], [0, 0, 0, 0, 1, 1], [0, 0, 0, 1, 0, 1],
+     [0, 0, 0, 1, 1, 0]]
+print(TrianglesCount(B))
+
+
+# -------------------------------------------------------------------------------
+
+# Exercise 5
+# Let S be a subset of vertices of G. We say that S is a dominating set of G if each vertex of G is either contained in S or dominated by S.
+# Write a function IsDominatingSet whose input is the adjacency matrix A of a graph G and a list S containing a subset of vertices of G.
+# The function must return true if S is a dominating set of G and false otherwise.
+
+def isDominated(adj_matrix, subset, v):
+    for element_subset in range(0, len(subset)):
+        vert = subset[element_subset] # this is the number in the subset (not index) // this PICKS THE ROW BASE ON THE VERTICES
+        if adj_matrix[vert][v] == 1: # Using vert to get the ROW and isDominateSet to get the 'COLUMN' shown by 'v'
+            return True
+    return False
+
+def isDominatingSet(adj_matrix, subset):
+    count = 0
+    for element_matrix_idx in range(0, len(adj_matrix)): # use this section to check through the COLUMNS of each row
+        if isDominated(adj_matrix, subset, element_matrix_idx): # [matrix, subset and the index of the matrix]
+            count += 1
+    return count == len(adj_matrix) - len(subset)
+
+
+#    -- 1 -> 3
+#  /   |   / |
+# 0    |  /  |
+#  \   | v   |
+#    -- 2 -- 4
+
+# Valid sets
+# [1, 4]
+# [1, 3]
+# [0, 3]
+# [0, 4]
+
+# Invalid sets
+# [2, 3]
+# [0, 1]
+# [1, 2]
+
+matrix = [
+    [0, 1, 1, 0, 0],
+    [1, 0, 1, 1, 0],
+    [1, 1, 0, 0, 1],
+    [0, 0, 1, 0, 1],
+    [0, 0, 1, 1, 0]
+]
+
+subSet0 = [1, 4]
+print(isDominatingSet(matrix, subSet0))
+
+subSet1 = [0, 3]
+print(isDominatingSet(matrix, subSet1))
+
+subSet2 = [2, 4]
+print(isDominatingSet(matrix, subSet2))
+
+invalidSubSet0 = [2, 3]
+print(isDominatingSet(matrix, invalidSubSet0))
