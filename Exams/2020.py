@@ -10,6 +10,23 @@
 # For example, these largest row elements of the above matrix are 3, 5, 7 and the
 # smallest of them is obviously 3.
 
+def bigSmall(A) :
+    largest = []
+
+    for i in range(0, len(A)) :
+
+        maxEl = max(A[i])
+        largest.append(maxEl)
+
+    return min(largest)
+
+A = [  [1,2,3],  [5,3,4],  [6,7,2]  ]
+
+print(bigSmall(A))
+
+
+---------------#### ALTERNATE SOLUTION ####------------
+
 def printSmallest(matrix):
     largest = []
 
