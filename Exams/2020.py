@@ -269,7 +269,7 @@ printEdges(A,S)
 
 ###################
 # THIS BFS ISN'T TECHNICALLY NEEDED FOR THE QUESTION - BUT HAS BEEN ADDED TO SHOW IT WORKS
-def connect(B): # BFS
+def connect(B): # BFS for MATRIX
     visited = [0] * len(B)
     q = [0]
 
@@ -285,17 +285,19 @@ def connect(B): # BFS
         if visited[i] == 0:
             return False
 
+    # if the new 'visited' array are all '1's' then they are connected.
     return True
 ###################
-
+ # See revision lecture 1 - 1.25.00 into first session
 # THIS IS THE ACTUAL ANSWER
 def connectedSubGraph(A, S):
     B = []
-    
+
     for i in range(0, len(S)) :
         end1 = S[i]
         rowB = []   #  initalizing the vertex end1
 
+        # rowB is the 'matrix (3 rows)' created from the main A matrix using the subset vertices
         for j in range(0, len(S)) :
             end2 = S[j]
             rowB.append(A[end1][end2])
@@ -329,3 +331,20 @@ A = [
 S = [3, 4, 5]
 
 connectedSubGraph(A, S)
+
+# Subset = [3, 4, 5]
+# Matrix = [
+#  #          *  *  *
+#  #0  1  2   3  4  5
+#  [0, 1, 1,  0, 0, 0], # 0
+#  [1, 0, 0,  1, 0, 0], # 1
+#  [1, 0, 0,  0, 1, 0], # 2
+#  [0, 1, 0, [0, 0, 1], # 3 *
+#  [0, 0, 1, [0, 0, 1], # 4 *
+#  [0, 0, 0, [1, 1, 0]  # 5 *
+#]            *  *  *
+
+# Subset_matrix_created =
+# [   [0, 0, 1],
+#     [0, 0, 1],
+#     [1, 1, 0]    ]
